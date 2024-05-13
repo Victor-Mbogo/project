@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "325756144642",
+    "project_id": "carzone-79e15",
+    "storage_bucket": "carzone-79e15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325756144642:android:3cf7793c9ab3074114ab1b",
+        "android_client_info": {
+          "package_name": "com.kiki.carzone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUJS2L4fmjbpb6rEb1_i2zFj86l1rP2Js"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+package com.kiki.carzone.navigation
+
+const val HOME_URL = "home"
+const val SIGNUP_URL = "signup"
+const val LOGIN_URL = "login"
+const val ADDPRODUCTS_URL = "add screen"
+const val ADD_PRODUCTS_URL = "add_products"
+const val ROUTE_VIEW_PROD = "favourite"
+const val START_URL = "start"
+const val SPLASH_URL = "splash"
+const val ROUTE_HOME = "homepage"
+const val EXPLORE_URL = "explore"
+//const val ROUTE_FAVOURITE = "favourite"
+const val PROFILE_URL = "profile"
+const val PRODUCTLIST_URL = "productlist"
+const val PRODUCTDETAILS_URL = " productdetails"
