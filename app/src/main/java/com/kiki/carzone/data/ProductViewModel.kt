@@ -39,10 +39,12 @@ class ProductViewModel(var navController:NavHostController, var context: Context
                 // Save data to db
                 storageRef.downloadUrl.addOnSuccessListener {
                     var imageUrl = it.toString()
+                    var mileage = it.toString()
                     var product = com.kiki.carzone.models.Product(
                         name,
                         quantity,
                         price,
+                        mileage,
                         imageUrl,
                         productId
                     )

@@ -10,6 +10,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+//import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
@@ -30,6 +32,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
@@ -73,7 +76,6 @@ import com.kiki.carzone.navigation.PRODUCTLIST_URL
 import com.kiki.carzone.R
 import com.kiki.carzone.navigation.ADD_PRODUCTS_URL
 import com.kiki.carzone.ui.theme.CarZoneTheme
-//import com.kiki.carzone.ui.theme.CarentTheme
 import kotlinx.coroutines.launch
 
 
@@ -82,10 +84,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomePage(navController:NavHostController) {
     val drawerItem = listOf(
-        DrawerItems(Icons.Default.Face,"Profile",0 , false),
+//        DrawerItems(Icons.Default.Face,"Profile",0 , false),
         DrawerItems(Icons.Default.Search,"Search",0 , false),
         DrawerItems(Icons.Default.Notifications,"Inbox",0 , false),
-        DrawerItems(Icons.Default.Settings,"Settings",0 , false),
+//        DrawerItems(Icons.Default.Settings,"Settings",0 , false),
     )
 
     var selectedItem by remember{
@@ -148,53 +150,6 @@ fun HomePage(navController:NavHostController) {
                 ) {it ->
 
 
-//                ModalNavigationDrawer(drawerContent = {
-//                    ModalDrawerSheet {
-//                        Column(modifier = Modifier.fillMaxSize(),
-//                            verticalArrangement = Arrangement.spacedBy(12.dp)){
-//
-//
-//                            drawerItem.forEach{
-//                                NavigationDrawerItem(label = { Text(it.text) },
-//                                    selected = it == selectedItem
-//                                    , onClick = {
-//                                        selectedItem = it
-//                                        scope.launch { drawerState.close() }
-//
-//                                    },
-//                                    modifier = Modifier.padding(horizontal = 16.dp),
-//                                    icon = {
-//                                        Icon(imageVector = it.icon, contentDescription = it.text)
-//                                    },
-//                                    badge = {
-//                                        if (it.hasBadge)
-//                                            BadgedBox(badge = {
-//                                                Badge{
-//                                                    Text(it.badgeCount.toString())
-//                                                }
-//                                            }) {
-//
-//                                            }
-//                                    }
-//
-//
-//                                )
-//                            }
-//
-//
-//
-//
-//                        }
-//
-//
-//
-//                    }
-//
-//                }) {
-//
-//
-//
-//
 
 
                 Column(
@@ -208,7 +163,7 @@ fun HomePage(navController:NavHostController) {
                     .clip(
                         RoundedCornerShape(0.dp, 0.dp, 20.dp, 20.dp)
                     ),
-                    colors = CardDefaults.cardColors(Color.Cyan),
+                    colors = CardDefaults.cardColors(Color(0xFFDC4200)),
                     shape = RoundedCornerShape(0.dp,0.dp,20.dp,20.dp)
                 )
 
@@ -230,33 +185,28 @@ fun HomePage(navController:NavHostController) {
 
                     Box(modifier = Modifier
                         .fillMaxWidth()
-//        .background(Color.Blue)
                         .padding(15.dp)
                         .clip(RoundedCornerShape(50.dp))
                     ) {
 
 
 
-                        Icon(imageVector = Icons.Default.LocationOn, contentDescription = "",
-                            modifier = Modifier
-                                .align(Alignment.TopStart)
-                                .clickable {
-                                    navController.navigate(PRODUCTLIST_URL)
-                                },
-//            if (isSystemInDarkTheme())Color.White else Color.Black
+
+                        Row(modifier = Modifier.fillMaxWidth())
+
+                        {
+                            Icon(imageVector = Icons.Default.LocationOn, contentDescription = "",
+                                modifier = Modifier
+//                                    .align(alignment = Alignment.TopStart)
+                                    .clickable {
+                                        navController.navigate(PRODUCTLIST_URL)
+                                    },
 
 
-                        )
-                        Row(modifier = Modifier.fillMaxWidth()) {
 
-                            Text(
-                                text = "",
+                            )
 
-                                )
-//            Spacer(modifier= Modifier.width(250.dp))
-//            Icon(imageVector = Icons.Default.Notifications, contentDescription = "",
-//                modifier = Modifier.align(Alignment.BottomStart)
-//            )
+
 
                         }
 
@@ -329,16 +279,16 @@ fun HomePage(navController:NavHostController) {
 
                         ){
 
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "",
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clickable {
-                                    navController.navigate(ADD_PRODUCTS_URL)
-
-
-                                },
-                            Color.Cyan
-                        )
+//                        Icon(imageVector = Icons.Default.Menu, contentDescription = "",
+//                            modifier = Modifier
+//                                .size(40.dp)
+//                                .clickable {
+//                                    navController.navigate(ADD_PRODUCTS_URL)
+//
+//
+//                                },
+//                            Color((0xffdc4200))
+//                        )
                     }
 
 
@@ -346,47 +296,31 @@ fun HomePage(navController:NavHostController) {
                     LazyColumn {
                         item {
 
-                            Row(modifier = Modifier.padding(15.dp)) {
-                                Text(
-                                    text = "Brands",
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontSize = 20.sp
-                                )
-                                Spacer(modifier = Modifier.width(260.dp))
-                                Text(
-                                    text = "see all",
-                                    color = Color.Blue
-                                )
-                            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            Row(modifier = Modifier.padding(15.dp)) {
-                                Text(
-                                    text = "Popular",
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontSize = 20.sp
-                                )
-                                Spacer(modifier = Modifier.width(253.dp))
-                                Text(
-                                    text = "see all",
-                                    color = Color.Blue
-                                )
-                            }
+//                            Row(modifier = Modifier.padding(15.dp)) {
+//                                Text(
+//                                    text = "Brands",
+//                                    fontWeight = FontWeight.SemiBold,
+//                                    fontSize = 20.sp
+//                                )
+//                                Spacer(modifier = Modifier.width(260.dp))
+//                                Text(
+//                                    text = "see all",
+//                                    color = Color.Blue
+//                                )
+//                            }
+//
+//                            Row(modifier = Modifier.padding(15.dp)) {
+//                                Text(
+//                                    text = "Popular",
+//                                    fontWeight = FontWeight.SemiBold,
+//                                    fontSize = 20.sp
+//                                )
+//                                Spacer(modifier = Modifier.width(253.dp))
+//                                Text(
+//                                    text = "see all",
+//                                    color = Color.Blue
+//                                )
+//                            }
 
 
                             Card (modifier= Modifier
@@ -400,7 +334,7 @@ fun HomePage(navController:NavHostController) {
                                     .width(362.dp)
                                     .padding(10.dp, 10.dp, 0.dp, 0.dp)) {
                                     Image(
-                                        painter = painterResource(id = R.drawable.wat),
+                                        painter = painterResource(id = R.drawable.hy),
                                         contentDescription = "",
                                         modifier = Modifier.fillMaxSize(),
 
@@ -414,15 +348,10 @@ fun HomePage(navController:NavHostController) {
                                         fontWeight = FontWeight.SemiBold,
                                         fontSize = 20.sp
                                     )
-//                           Spacer(modifier = Modifier.width(253.dp))
-//                           Text(
-//                               text = "see all",
-//                               color = Color.Blue
-//                           )
                                 }
 
                                 Row {
-                                    Text("Manual")
+                                    Text("Automatic")
                                     Spacer(modifier = Modifier.width(80.dp))
                                     Text("Petrol")
                                     Spacer(modifier = Modifier.width(80.dp))
@@ -446,7 +375,7 @@ fun HomePage(navController:NavHostController) {
                                     .width(362.dp)
                                     .padding(10.dp, 10.dp, 0.dp, 0.dp)) {
                                     Image(
-                                        painter = painterResource(id =com.kiki.carzone.R.drawable.wat),
+                                        painter = painterResource(id =com.kiki.carzone.R.drawable.tc),
                                         contentDescription = "",
                                         modifier = Modifier.fillMaxSize(),
 
@@ -456,7 +385,7 @@ fun HomePage(navController:NavHostController) {
 
                                 Row(modifier = Modifier.padding(15.dp)) {
                                     Text(
-                                        text = "Hyundai verna",
+                                        text = "Toyota Camry",
                                         fontWeight = FontWeight.SemiBold,
                                         fontSize = 20.sp
                                     )
@@ -468,7 +397,7 @@ fun HomePage(navController:NavHostController) {
                                 }
 
                                 Row {
-                                    Text("Manual")
+                                    Text("Auto")
                                     Spacer(modifier = Modifier.width(80.dp))
                                     Text("Petrol")
                                     Spacer(modifier = Modifier.width(80.dp))
@@ -492,7 +421,7 @@ fun HomePage(navController:NavHostController) {
                                     .width(362.dp)
                                     .padding(10.dp, 10.dp, 0.dp, 0.dp)) {
                                     Image(
-                                        painter = painterResource(id =com.kiki.carzone.R.drawable.wat),
+                                        painter = painterResource(id =com.kiki.carzone.R.drawable.hc),
                                         contentDescription = "",
                                         modifier = Modifier.fillMaxSize(),
 
@@ -502,7 +431,7 @@ fun HomePage(navController:NavHostController) {
 
                                 Row(modifier = Modifier.padding(15.dp)) {
                                     Text(
-                                        text = "Hyundai verna",
+                                        text = "Honda Crossroad",
                                         fontWeight = FontWeight.SemiBold,
                                         fontSize = 20.sp
                                     )
@@ -514,11 +443,11 @@ fun HomePage(navController:NavHostController) {
                                 }
 
                                 Row {
-                                    Text("Manual")
+                                    Text("Auto")
                                     Spacer(modifier = Modifier.width(80.dp))
                                     Text("Petrol")
                                     Spacer(modifier = Modifier.width(80.dp))
-                                    Text("5 Seater")
+                                    Text("7 Seater")
                                 }
 
                             }
@@ -539,7 +468,7 @@ fun HomePage(navController:NavHostController) {
                                     .width(362.dp)
                                     .padding(10.dp, 10.dp, 0.dp, 0.dp)) {
                                     Image(
-                                        painter = painterResource(id =com.kiki.carzone.R.drawable.wat),
+                                        painter = painterResource(id =com.kiki.carzone.R.drawable.vwg),
                                         contentDescription = "",
                                         modifier = Modifier.fillMaxSize(),
 
@@ -549,7 +478,7 @@ fun HomePage(navController:NavHostController) {
 
                                 Row(modifier = Modifier.padding(15.dp)) {
                                     Text(
-                                        text = "Hyundai verna",
+                                        text = "VolksWagen Golf",
                                         fontWeight = FontWeight.SemiBold,
                                         fontSize = 20.sp
                                     )
@@ -569,20 +498,6 @@ fun HomePage(navController:NavHostController) {
                                 }
 
                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         }
                     }
 
@@ -625,22 +540,22 @@ val bottomNavItems = listOf(
 
 
     BottomNavItem(
-        title = "Favourite",
-        route="favourite",
-        selectedIcon=Icons.Filled.Favorite,
-        unselectedIcon=Icons.Outlined.Favorite,
+        title = "add Car",
+        route="add screen",
+        selectedIcon=Icons.Filled.Add,
+        unselectedIcon=Icons.Outlined.Add,
         hasNews = true,
         badges=5
     ),
 
-    BottomNavItem(
-        title = "Profile",
-        route="profile",
-        selectedIcon=Icons.Filled.Face,
-        unselectedIcon=Icons.Outlined.Face,
-        hasNews = true,
-        badges=1
-    ),
+//    BottomNavItem(
+//        title = "Profile",
+//        route="profile",
+//        selectedIcon=Icons.Filled.Face,
+//        unselectedIcon=Icons.Outlined.Face,
+//        hasNews = true,
+//        badges=1
+//    ),
 
 
     )

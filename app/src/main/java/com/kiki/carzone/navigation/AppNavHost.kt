@@ -14,9 +14,11 @@ import com.kiki.carzone.screens.favourite.FavouriteScreen
 import com.kiki.carzone.screens.homepage.HomePage
 //import com.kiki.carzone.screens.login.LoginScreen
 //import com.kiki.carzone.screens.products.AddProductsScreen
-import com.kiki.carzone.screens.splashscreen.SplashScreen
+//import com.kiki.carzone.screens.splashscreen.SplashScreen
 import com.kiki.carzone.screens.start.StartScreen
 import com.kiki.carzone.screens.users.ProfileScreen
+import net.kiki.ui.SplashScreen
+
 //import com.kiki.carzone.screens.products.ViewProductsScreen
 //import com.kiki.carzone.screens.signup.SignUpScreen
 
@@ -25,7 +27,7 @@ import com.kiki.carzone.screens.users.ProfileScreen
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController:NavHostController = rememberNavController(),
-    startDestination:String = ROUTE_HOME
+    startDestination:String = SPLASH_URL
 ){
     NavHost(
         navController = navController,

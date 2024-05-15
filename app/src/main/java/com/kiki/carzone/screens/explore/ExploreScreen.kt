@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -40,6 +42,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -49,6 +53,7 @@ import com.kiki.carzone.navigation.ROUTE_HOME
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.kiki.carzone.R
 import kotlinx.coroutines.tasks.await
 
 data class Product(
@@ -56,6 +61,9 @@ data class Product(
     val name: String = "",
     val description: String ="",
     val price: Double = 0.0,
+    val mileage: Double =0.0,
+    val year : Double = 0.0,
+    val no : Int =0,
     var imageUrl: String = ""
 )
 
@@ -96,7 +104,7 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
                 },
 
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xff0FB06A),
+                    containerColor = Color(0xFFF92706),
                     titleContentColor = Color.White,
 
                     )
@@ -107,7 +115,7 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xff9AEDC9))
+                    .background(Color(0xffFFDACA))
             ) {
                 if (isLoading) {
                     // Progress indicator
@@ -151,33 +159,68 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
 
 @Composable
 fun ProductListItem(product: Product, onItemClick: (String) -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable { onItemClick(product.id) }
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(16.dp)
-        ) {
-            // Product Image
+
+
+    Card (modifier= Modifier
+        .fillMaxWidth()
+        .padding(10.dp, 0.dp, 10.dp, 0.dp),
+        elevation = CardDefaults.cardElevation(10.dp),
+        colors = CardDefaults.cardColors(if (isSystemInDarkTheme())Color.LightGray else Color.White)) {
+        Card (modifier = Modifier
+            .height(250.dp)
+
+            .width(362.dp)
+            .padding(10.dp, 10.dp, 0.dp, 0.dp)) {
             Image(
                 painter = rememberImagePainter(product.imageUrl),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(60.dp)
+                contentDescription = "",
+                modifier = Modifier.fillMaxSize(),
+
+                )
+
+        }
+
+
+        Column(modifier = Modifier.padding(15.dp))
+        {
+            Text(
+                text = product.name,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 20.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = product.description,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 17.sp
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Text("Price: ${product.price}")
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Seller phone: ${product.mileage}")
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Year of Production ${product.year}")
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Year of Production ${product.no}")
+            Spacer(modifier = Modifier.height(8.dp))
 
-            // Product Details
-            Column {
-                Text(text = product.name)
-                Text(text = "Price: ${product.price}")
-            }
         }
+
+        Row {
+//            Text("Price: ${product.price}")
+//            Spacer(modifier = Modifier.width(80.dp))
+//            Text("Seller phone: ${product.mileage}")
+//            Spacer(modifier = Modifier.width(80.dp))
+//            Text("Year of Production ${product.year}")
+//            Spacer(modifier = Modifier.width(80.dp))
+//            Text("Year of Production ${product.no}")
+//            Spacer(modifier = Modifier.width(80.dp))
+
+        }
+
     }
+
+    Spacer(modifier = Modifier.height(10.dp))
 }
 
 private suspend fun fetchProducts(onSuccess: (List<Product>) -> Unit) {
