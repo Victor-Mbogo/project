@@ -17,11 +17,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,12 +35,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
+import coil.compose.rememberImagePainter
 import com.kiki.carzone.navigation.ROUTE_HOME
+import com.kiki.carzone.navigation.PRODUCTLIST_URL
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -221,7 +228,6 @@ fun AddProductScreen(navController: NavController, onProductAdded: () -> Unit) {
                             productNameError = productName.isBlank()
                             productDescriptionError = productDescription.isBlank()
                             productMileageError = productMileage.isBlank()
-                            productNoError =productNo.isBlank()
                             productImageError = productImageUri == null
 
                             // Add product if all fields are filled
@@ -232,7 +238,6 @@ fun AddProductScreen(navController: NavController, onProductAdded: () -> Unit) {
                                     productName,
                                     productDescription,
                                     productMileage.toDouble(),
-                                    productNo.toDouble(),
                                     productImageUri
                                 )
                             }
@@ -247,27 +252,8 @@ fun AddProductScreen(navController: NavController, onProductAdded: () -> Unit) {
     )
 }
 
-fun addProductToFirestore(navController: NavController, onProductAdded: () -> Unit,
-                          productName: String,
-                          productDescription: String,
-                          productMileage: Double,
-                          productPrice: Double,
-                          productImageUri1: Uri?) {
-
-}
-
-private fun addProductToFirestore(
-    navController: NavController,
-    onProductAdded: () -> Unit,
-    productName: String,
-    productDescription: String,
-    productMileage: Double,
-    productPrice: Double,
-    productYear: Int,
-//    productImageUri1: Uri?,
-    productImageUri: Uri?
-) {
-    if (productName.isEmpty() || productDescription.isEmpty() || productMileage.isNaN() || productImageUri == null) {
+private fun addProductToFirestore(navController: NavController, onProductAdded: () -> Unit, productName: String, productDescription: String, productPrice: Double, productImageUri: Uri?) {
+    if (productName.isEmpty() || productDescription.isEmpty() || productPrice.isNaN() || productImageUri == null) {
         // Validate input fields
         return
     }
@@ -279,7 +265,7 @@ private fun addProductToFirestore(
         "name" to productName,
         "description" to productDescription,
         "price" to productPrice,
-        "mileage" to productMileage,
+//        "mileage" to productMileage,
         "imageUrl" to ""
     )
 

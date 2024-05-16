@@ -198,9 +198,7 @@ fun HomePage(navController:NavHostController) {
                             Icon(imageVector = Icons.Default.LocationOn, contentDescription = "",
                                 modifier = Modifier
 //                                    .align(alignment = Alignment.TopStart)
-                                    .clickable {
-                                        navController.navigate(PRODUCTLIST_URL)
-                                    },
+
 
 
 

@@ -195,9 +195,9 @@ fun ProductListItem(product: Product, onItemClick: (String) -> Unit) {
                 fontSize = 17.sp
             )
 
-            Text("Mileage: ${product.mileage}")
+            Text("Mileage: ${product.mileage} km")
             Spacer(modifier = Modifier.height(8.dp))
-            Text("Price: ${product.price}")
+            Text("Price: $${product.price}")
             Spacer(modifier = Modifier.height(8.dp))
             Text("Year: ${product.year}")
             Spacer(modifier = Modifier.height(8.dp))
