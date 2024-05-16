@@ -247,7 +247,12 @@ fun AddProductScreen(navController: NavController, onProductAdded: () -> Unit) {
     )
 }
 
-fun addProductToFirestore(navController: NavController, onProductAdded: () -> Unit, productName: String, productDescription: String, productMileage: Double, productPrice: Double, productImageUri1: Uri?) {
+fun addProductToFirestore(navController: NavController, onProductAdded: () -> Unit,
+                          productName: String,
+                          productDescription: String,
+                          productMileage: Double,
+                          productPrice: Double,
+                          productImageUri1: Uri?) {
 
 }
 
@@ -258,7 +263,8 @@ private fun addProductToFirestore(
     productDescription: String,
     productMileage: Double,
     productPrice: Double,
-    productImageUri1: Uri?,
+    productYear: Int,
+//    productImageUri1: Uri?,
     productImageUri: Uri?
 ) {
     if (productName.isEmpty() || productDescription.isEmpty() || productMileage.isNaN() || productImageUri == null) {

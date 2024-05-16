@@ -89,7 +89,7 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Products",fontSize = 30.sp, color = Color.White)
+                    Text(text = "Cars",fontSize = 30.sp, color = Color.White)
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -195,13 +195,13 @@ fun ProductListItem(product: Product, onItemClick: (String) -> Unit) {
                 fontSize = 17.sp
             )
 
+            Text("Mileage: ${product.mileage}")
+            Spacer(modifier = Modifier.height(8.dp))
             Text("Price: ${product.price}")
             Spacer(modifier = Modifier.height(8.dp))
-            Text("Seller phone: ${product.mileage}")
+            Text("Year: ${product.year}")
             Spacer(modifier = Modifier.height(8.dp))
-            Text("Year of Production ${product.year}")
-            Spacer(modifier = Modifier.height(8.dp))
-            Text("Year of Production ${product.no}")
+            Text("Phone: ${product.no}")
             Spacer(modifier = Modifier.height(8.dp))
 
         }
